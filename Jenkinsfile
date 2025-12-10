@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo "Ejecutando análisis en SonarQube..."
 
-                withSonarQubeEnv('semestral') {
+                withSonarQubeEnv('sonnar-server') {
 
                     script {
                         def scannerHome = tool 'sonar-scanner'   // DEBE llamarse igual que tu instalación en Jenkins
@@ -35,7 +35,7 @@ pipeline {
                                 sonar-scanner \
                                 -Dsonar.projectKey=proyecto-ci-demo \
                                 -Dsonar.sources=. \
-                                -Dsonar.host.url=http://192.168.109.141:9000 \
+                                -Dsonar.host.url=http://192.168.31.232:9000 \
                                 -Dsonar.login=$SONAR_AUTH_TOKEN
                             """
                         }
