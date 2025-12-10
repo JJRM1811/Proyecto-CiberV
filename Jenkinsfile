@@ -38,7 +38,7 @@ pipeline {
                                 sonar-scanner \
                                 -Dsonar.projectKey=semestral-ciberv \
                                 -Dsonar.sources=. \
-                                -Dsonar.host.url=http://192.168.31.232:9000 \
+                                -Dsonar.host.url=http://192.168.80.147:9000 \
                                 -Dsonar.login=$SONAR_AUTH_TOKEN
                             """
                         }
