@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    environment {
+        SONAR_AUTH_TOKEN = credentials('sinar-token')
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo "Descargando código desde GitHub..."
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "Compilando o probando..."
+                sh 'echo Build exitoso'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                echo "Ejecutando análisis en SonarQube..."
+
+                withSonarQubeEnv('semestral') {
+
+                    script {
+                        def scannerHome = tool 'scanner'   // DEBE llamarse igual que tu instalación en Jenkins
+
+                        withEnv(["PATH+SONAR=${scannerHome}/bin"]) {
+                            sh """
+                                sonar-scanner \
+                                -Dsonar.projectKey=proyecto-ci-demo \
+                                -Dsonar.sources=. \
+                                -Dsonar.host.url=http://192.168.109.141:9001 \
+                                -Dsonar.login=$SONAR_AUTH_TOKEN
+                            """
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
