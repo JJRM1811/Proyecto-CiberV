@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo "Ejecutando análisis en SonarQube..."
 
-                withSonarQubeEnv('sonnar-server') {
+                withSonarQubeEnv('sonar-server') {
 
                     script {
                         def scannerHome = tool 'sonar-scanner'   // DEBE llamarse igual que tu instalación en Jenkins
