@@ -35,7 +35,7 @@ pipeline {
                                 sonar-scanner \
                                 -Dsonar.projectKey=proyecto-ci-demo \
                                 -Dsonar.sources=. \
-                                -Dsonar.host.url=http://192.168.31.232:9000 \
+                                -Dsonar.host.url=http://192.168.80.147:9000 \
                                 -Dsonar.login=$SONAR_AUTH_TOKEN
                             """
                         }
