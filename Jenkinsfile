@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+// 1. ESTO ASEGURA LA AUTOMATIZACIÓN (Revisa cada minuto)
+    triggers {
+        pollSCM 'H/2 * * * *'
+    }
     environment {
         SONAR_AUTH_TOKEN = credentials('sonar-token')
     }
