@@ -30,7 +30,7 @@ pipeline {
             steps {
                 echo "Ejecutando análisis en SonarQube..."
                 // Asegúrate que 'sonar-sever' coincida con el nombre en: Administrar Jenkins > System
-                withSonarQubeEnv('sonar-sever') { 
+                withSonarQubeEnv('sonar-server') { 
                     script {
                         def scannerHome = tool 'sonar-scanner'
                         withEnv(["PATH+SONAR=${scannerHome}/bin"]) {
